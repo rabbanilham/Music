@@ -27,6 +27,15 @@ final class HomeViewController: UITableViewController {
     var playPreviousButton: UIButton = UIButton(configuration: .borderedTinted())
     var playPauseButton: UIButton = UIButton(configuration: .filled())
     var playerProgressSlider: UISlider = UISlider()
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        var userDefaultQueue: [String] = []
+        for music in musicQueue {
+            userDefaultQueue.append(music.title)
+        }
+        UserDefaults.standard.set(userDefaultQueue, forKey: "music-queue")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +67,11 @@ final class HomeViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 1:
-            return musicQueue.count
+            if musicQueue.count == 0 {
+                return 1
+            } else {
+                return musicQueue.count
+            }
         default:
             return 1
         }
@@ -128,6 +141,12 @@ final class HomeViewController: UITableViewController {
             return cell
             
         case 1:
+            guard !(musicQueue.isEmpty) else {
+                let emptyQueueCell = tableView.dequeueReusableCell(withIdentifier: "queueCell", for: indexPath)
+                emptyQueueCell.textLabel?.text = "No music in queue."
+                emptyQueueCell.textLabel?.textColor = .secondaryLabel
+                return emptyQueueCell
+            }
             let cell = tableView.dequeueReusableCell(withIdentifier: "queueCell", for: indexPath)
 //            let view = cell.contentView
             let music = musicQueue[row]
@@ -141,6 +160,7 @@ final class HomeViewController: UITableViewController {
             )
             attrTitle.append(attrArtist)
             cell.textLabel?.attributedText = attrTitle
+            cell.textLabel?.textColor = .label
             cell.selectionStyle = .none
             return cell
         default:
@@ -158,6 +178,14 @@ final class HomeViewController: UITableViewController {
         )
         addButton.tintColor = .systemPink
         navigationItem.rightBarButtonItem = addButton
+        let aboutButton = UIBarButtonItem(
+            image: UIImage(systemName: "info.circle"),
+            style: .plain,
+            target: self,
+            action: #selector(goToAboutViewController)
+        )
+        aboutButton.tintColor = .systemPink
+        navigationItem.leftBarButtonItem = aboutButton
     }
     
     func stringFromTimeInterval(interval: TimeInterval) -> String {
@@ -169,6 +197,17 @@ final class HomeViewController: UITableViewController {
     }
 
     func setupPlayer() {
+        if let userDefaultsMusicQueue = UserDefaults.standard.object(forKey: "music-queue") as? [String] {
+            var userDefaultQueue: [Music] = []
+            for musicTitle in userDefaultsMusicQueue {
+                for music in Music.defaultMusicList() {
+                    if musicTitle == music.title {
+                        userDefaultQueue.append(music)
+                    }
+                }
+            }
+            musicQueue = userDefaultQueue
+        }
         var musicTitle: String?
         var musicArtist: String?
         var fileUrl: URL?
@@ -227,12 +266,12 @@ final class HomeViewController: UITableViewController {
         trackTimeLabel.translatesAutoresizingMaskIntoConstraints = false
 
         playNextButton.translatesAutoresizingMaskIntoConstraints = false
-        playNextButton.setImage(UIImage(systemName: "forward.fill"), for: .normal)
+        playNextButton.setImage(UIImage(systemName: "forward.end.alt.fill"), for: .normal)
         playNextButton.addTarget(self, action: #selector(onNextButtonPressed), for: .touchUpInside)
         playNextButton.tintColor = .systemPink
 
         playPreviousButton.translatesAutoresizingMaskIntoConstraints = false
-        playPreviousButton.setImage(UIImage(systemName: "backward.fill"), for: .normal)
+        playPreviousButton.setImage(UIImage(systemName: "backward.end.alt.fill"), for: .normal)
         playPreviousButton.tintColor = .systemPink
         playPreviousButton.addTarget(self, action: #selector(onPreviousButtonPressed), for: .touchUpInside)
 
@@ -393,12 +432,20 @@ final class HomeViewController: UITableViewController {
         navigationController?.present(navigator, animated: true)
         viewController.onDoneButtonTap = { [weak self] queue in
             guard let _self = self else { return }
+            UserDefaults.standard.removeObject(forKey: "music-queue")
             _self.musicQueue = queue
             _self.setupPlayer()
             _self.tableView.reloadData()
             _self.setupAudioBackground()
             _self.setupRemoteCommandCenter()
         }
+    }
+    
+    @objc func goToAboutViewController() {
+        let viewController = AboutViewController(style: .insetGrouped)
+        let navigator = UINavigationController(rootViewController: viewController)
+        navigator.navigationBar.prefersLargeTitles = true
+        navigationController?.present(navigator, animated: true)
     }
     
 }

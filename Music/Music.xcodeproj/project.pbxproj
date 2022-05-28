@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		38263A152841EDED005265E5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 38263A142841EDED005265E5 /* Kingfisher */; };
+		38263A1A2841F4E4005265E5 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38263A192841F4E4005265E5 /* AboutViewController.swift */; };
 		38DF175F28410362003AF71C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DF175E28410362003AF71C /* AppDelegate.swift */; };
 		38DF176128410362003AF71C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DF176028410362003AF71C /* SceneDelegate.swift */; };
 		38DF176828410363003AF71C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38DF176728410363003AF71C /* Assets.xcassets */; };
@@ -18,12 +20,12 @@
 		38DF178C28414C29003AF71C /* QueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DF178B28414C29003AF71C /* QueueViewController.swift */; };
 		38DF178E2841505B003AF71C /* Purusha - NVDES.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 38DF178D2841505A003AF71C /* Purusha - NVDES.mp3 */; };
 		38DF1790284150D0003AF71C /* Overtime - Cash Cash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 38DF178F284150D0003AF71C /* Overtime - Cash Cash.mp3 */; };
-		38DF1793284192DA003AF71C /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 38DF1792284192DA003AF71C /* Kingfisher */; };
 		38DF179B2841B8D3003AF71C /* Chimes - Hudson Mohawke.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 38DF17992841B8D3003AF71C /* Chimes - Hudson Mohawke.mp3 */; };
 		38DF179C2841B8D3003AF71C /* Poison - Martin Garrix.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 38DF179A2841B8D3003AF71C /* Poison - Martin Garrix.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38263A192841F4E4005265E5 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		38DF175B28410362003AF71C /* Music.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Music.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DF175E28410362003AF71C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38DF176028410362003AF71C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38DF1793284192DA003AF71C /* Kingfisher in Frameworks */,
+				38263A152841EDED005265E5 /* Kingfisher in Frameworks */,
 				38DF177428410505003AF71C /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,6 +56,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38263A162841EE71005265E5 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		38DF175228410362003AF71C = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +83,7 @@
 		38DF175D28410362003AF71C /* Music */ = {
 			isa = PBXGroup;
 			children = (
+				38263A162841EE71005265E5 /* Utility */,
 				38DF176C28410363003AF71C /* Info.plist */,
 				38DF17972841A079003AF71C /* Resource */,
 				38DF17962841A05A003AF71C /* PresentationLayer */,
@@ -113,6 +123,7 @@
 			children = (
 				38DF17752841051A003AF71C /* HomeViewController.swift */,
 				38DF178B28414C29003AF71C /* QueueViewController.swift */,
+				38263A192841F4E4005265E5 /* AboutViewController.swift */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -156,7 +167,7 @@
 			);
 			name = Music;
 			packageProductDependencies = (
-				38DF1792284192DA003AF71C /* Kingfisher */,
+				38263A142841EDED005265E5 /* Kingfisher */,
 			);
 			productName = Music;
 			productReference = 38DF175B28410362003AF71C /* Music.app */;
@@ -187,7 +198,7 @@
 			);
 			mainGroup = 38DF175228410362003AF71C;
 			packageReferences = (
-				38DF1791284192DA003AF71C /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				38263A132841EDED005265E5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 38DF175C28410362003AF71C /* Products */;
 			projectDirPath = "";
@@ -220,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38263A1A2841F4E4005265E5 /* AboutViewController.swift in Sources */,
 				38DF178C28414C29003AF71C /* QueueViewController.swift in Sources */,
 				38DF175F28410362003AF71C /* AppDelegate.swift in Sources */,
 				38DF176128410362003AF71C /* SceneDelegate.swift in Sources */,
@@ -434,7 +446,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		38DF1791284192DA003AF71C /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		38263A132841EDED005265E5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -445,9 +457,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		38DF1792284192DA003AF71C /* Kingfisher */ = {
+		38263A142841EDED005265E5 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 38DF1791284192DA003AF71C /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 38263A132841EDED005265E5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
